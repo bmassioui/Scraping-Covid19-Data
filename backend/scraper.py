@@ -16,7 +16,7 @@ def process():
     # extract only the rows withing the table that have style property is null as value (Rows that conatins data is only those that have style is null)
     rows = table.find_all("tr", attrs={"style": ""})
     data = []
-    for item in enumerate(rows):
+    for item in rows:
         data.append(item.text.strip().split("\n")[:12])
     
     dt = pd.DataFrame(data)
@@ -24,4 +24,4 @@ def process():
     df.head()
 
     # save scraped data to .csv as datasource
-    df.to_csv('datasource/data-*.csv')
+    df.to_csv(constants.PATH_WHERE_2_SAVE_DATASOURCE)
