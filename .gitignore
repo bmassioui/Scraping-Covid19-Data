@@ -128,5 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Ignore datasource directory to be tracked
-backend/datasource/ 
+# Ignore DB directory
+backend/data/

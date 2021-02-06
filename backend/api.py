@@ -1,6 +1,7 @@
 # expose scraped data for covid19
 from flask import Flask
 import scraper
+import helpers
 
 app = Flask(__name__)
 
@@ -10,16 +11,19 @@ app = Flask(__name__)
 #    return {}
 
 # returns single record of WORLD's
-#@app.route('/get_4_world')
-#def get_4_world():
-#     return {}
+@app.route('/get_4_world', methods=["GET"])
+def get_4_world():
+    if(not helpers.is_datasource_exists()):
+        return {'status code' : 412, 'Message' : 'Datasource unavailable, please refresh datasource!'}
+
+    return {'time' : 'test'}
 
 # returns country's records
 #@app.route('/get_4_country')
 #def get_4_country():
 #    return {}
 
-# refresh DATASOURCE(excel file .csv) by re-scraping 
+# refresh DATASOURCE(excel file .csv)
 @app.route('/refresh',  methods=["GET"])
 def refresh():
     try:

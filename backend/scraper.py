@@ -5,10 +5,13 @@ import pandas as pd
 import dask.dataframe as dd
 import constants
 
+"""
+ Process COVID 19 web scraping
+"""
 def process():
     page = requests.get(constants.SCRAPED_FROM)
     if(page.status_code != 200):
-        raise Exception('unable to process scraping')
+        raise Exception('unable to process web scraping')
 
     # parsing the result to xml format    
     soup = BeautifulSoup(page.content, 'lxml')
@@ -23,5 +26,5 @@ def process():
     df = dd.from_pandas(dt,npartitions=1)
     df.head()
 
-    # save scraped data to .csv as datasource
-    df.to_csv(constants.PATH_WHERE_2_SAVE_DATASOURCE)
+    # save scraped data to .csv as DATASOURCE
+    df.to_csv(constants.DATASOURCE_PATH)
