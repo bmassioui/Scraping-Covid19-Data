@@ -14,8 +14,8 @@ def get():
 def get_4_world():
     print('start')
     df = get()
-    print(df)
+    # print(df)
     # df.loc[df[""Country,Other"] == "World"]
-    print(df[df["7"] == "ActiveCases"])
+    print(df[df["Country,Other"] == "World"])
     print('end')
     # return df.head()
