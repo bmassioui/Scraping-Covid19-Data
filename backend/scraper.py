@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import dask.dataframe as dd
 import constants
+import array
 
 """
  Process COVID 19 web scraping
@@ -24,11 +25,12 @@ def process():
     data = []
     for i,item in enumerate(rows):
         if i == 1:
-            data.append(item.text.strip().split("\n")[:12])
+            worldrow = item.text.strip().split("\n")[:11]
+            worldrow.insert(0, "##")
+            data.append(worldrow)
         else:
             data.append(item.text.strip().split("\n")[0:12])
     
-    #dt = pd.DataFrame(data)
     dt = pd.DataFrame(data[1:], columns=data[0][:12]) #Formatting the header
     df = dd.from_pandas(dt,npartitions=1)
 
