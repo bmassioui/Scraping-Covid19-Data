@@ -10,8 +10,19 @@ def get():
     df = pd.read_csv(datasource_path)
     return df.head()
 
-# get record for ""world
+# ret all records as Json Response
+def getall():
+    result = get()
+    return result.to_json(orient="records")
+
+# get record for "world" as Json Response
 def get_4_world():
     df = get()
-    df[df["Country,Other"] == "World"]
-    return df.head()
+    result = df[df["Country,Other"] == "World"]
+    return result.to_json(orient="records")
+
+# get country record as Json Response
+def get_4_country(country):
+    df = get()
+    result = df[df["Country,Other"] == country]
+    return result.to_json(orient="records")
