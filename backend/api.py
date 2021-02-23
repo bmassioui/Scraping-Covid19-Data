@@ -20,8 +20,8 @@ def get_4_world():
             return {'status code' : 412, 'Message' : 'Datasource unavailable, please refresh datasource!'}
 
         df = repository.get_4_world()
-        
-        return {'status code' : 200, 'Message' : 'Datasource has been refreshed successfully!'}
+        print(df)
+        return {'status code' : 200, 'Message' : 'result found'}
     except:
         return {'status code' : 500, 'Message' : 'Internal Server Error, please contact administrator.'}
 
@@ -33,11 +33,11 @@ def get_4_world():
 # refresh DATASOURCE(excel file .csv)
 @app.route('/refresh',  methods=["GET"])
 def refresh():
-   # try:
+    try:
         scraper.process()
         return {'status code' : 200, 'Message' : 'Datasource has been refreshed successfully!'}
-    # except:
-    #     return {'status code' : 500, 'Message' : 'Unable to scrape covid19 data.'}
+    except:
+        return {'status code' : 500, 'Message' : 'Unable to scrape covid19 data.'}
 
 
     

@@ -12,10 +12,6 @@ def get():
 
 # get record for ""world
 def get_4_world():
-    print('start')
     df = get()
-    # print(df)
-    # df.loc[df[""Country,Other"] == "World"]
-    print(df[df["Country,Other"] == "World"])
-    print('end')
-    # return df.head()
+    df[df["Country,Other"] == "World"]
+    return df.head()
