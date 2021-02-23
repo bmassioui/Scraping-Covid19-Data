@@ -1,5 +1,6 @@
 # centralize scraping business logic
 import requests
+import warnings
 from bs4 import BeautifulSoup
 import pandas as pd
 import dask.dataframe as dd
@@ -19,17 +20,19 @@ def process():
     # extract only the rows withing the table that have style property is null as value (Rows that conatins data is only those that have style is null)
     rows = table.find_all("tr", attrs={"style": ""})
 
+    # Process and Iterat data
     data = []
     for i,item in enumerate(rows):
         if i == 1:
             data.append(item.text.strip().split("\n")[:12])
         else:
-            data.append(item.text.strip().split("\n")[1:12])
-
-    dt = pd.DataFrame(data)
+            data.append(item.text.strip().split("\n")[0:12])
+    
+    #dt = pd.DataFrame(data)
+    dt = pd.DataFrame(data[1:], columns=data[0][:12]) #Formatting the header
     df = dd.from_pandas(dt,npartitions=1)
 
     df.head()
 
     # save scraped data to .csv as DATASOURCE
-    df.to_csv(constants.DATASOURCE_PATH)
+    df.to_csv(constants.DATASOURCE_PATH, index=False)
