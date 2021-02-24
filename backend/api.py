@@ -18,8 +18,8 @@ def get():
             return {'status code': 412, 'Message': 'Datasource unavailable, please refresh datasource!'}
 
         return repository.getall()
-    except:
-        return {'status code': 500, 'Message': 'Internal Server Error, please contact administrator.'}
+    except Exception as exception:
+        return {'status code': 500, 'Message':  exception.__doc__}
 
 # returns single record of WORLD's
 
@@ -31,8 +31,8 @@ def get_4_world():
             return {'status code': 412, 'Message': 'Datasource unavailable, please refresh datasource!'}
 
         return repository.get_4_world()
-    except:
-        return {'status code': 500, 'Message': 'Internal Server Error, please contact administrator.'}
+    except Exception as exception:
+        return {'status code': 500, 'Message':  exception.__doc__}
 
 # returns country's records
 
@@ -48,8 +48,8 @@ def get_4_country():
             return {'status code': 412, 'Message': 'Datasource unavailable, please refresh datasource!'}
 
         return repository.get_4_country(country)
-    except:
-        return {'status code': 500, 'Message': 'Internal Server Error, please contact administrator.'}
+    except Exception as exception:
+        return {'status code': 500, 'Message':  exception.__doc__}
 
 # refresh DATASOURCE(excel file .csv)
 
@@ -59,5 +59,5 @@ def refresh():
     try:
         scraper.process()
         return {'status code': 200, 'Message': 'Datasource has been refreshed successfully!'}
-    except:
-        return {'status code': 500, 'Message': 'Unable to scrape covid19 data.'}
+    except Exception as exception:
+        return {'status code': 500, 'Message': exception.__doc__}
