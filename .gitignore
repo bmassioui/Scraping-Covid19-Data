@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # Ignore DB directory
-# backend/data/
+backend/data/
