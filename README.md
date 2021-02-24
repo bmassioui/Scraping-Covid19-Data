@@ -14,10 +14,11 @@ Worldometers has a credible sources of COVID19 data around the world. In this ar
 > backend/data/datasource-*.csv
 
 # About the project
-The project is a Flask Api, which exposes 3 differents endpoints :
-1. Get statistic for the world (new cases, recovered, total death ...)
-2. Get statistic by specific country (new cases, recovered, total death ...)
-3. Get statistic for all available countries (new cases, recovered, total death ...)
+The project is a Flask Api, which exposes 4 differents endpoints :
+1. Refresh datasource (scraping the covid 19 statistic and export it as .csv file)
+2. Get statistic for the world (new cases, recovered, total death ...)
+3. Get statistic by specific country (new cases, recovered, total death ...)
+4. Get statistic for all available countries (new cases, recovered, total death ...)
 
 # How to run the project
 First of all, the project use local environement, therfore to run the project successfully, it requires to install its dependencies:
@@ -35,9 +36,10 @@ First of all, the project use local environement, therfore to run the project su
 
 
 # How to invoke each endpoints
-1. For **WORLD** `127.0.0.1:5000/get_4_world`
-2. For **COUNTRY** `127.0.0.1:5000/get_4_country?country=country_name`, Note `country_name` is the country that need to be passed.
-3. For **ALL** `127.0.0.1:5000/get`
+1. Run the scrap `127.0.0.1:5000/refresh`
+2. For **WORLD** `127.0.0.1:5000/get_4_world`
+3. For **COUNTRY** `127.0.0.1:5000/get_4_country?country=country_name`, Note `country_name` is the country that need to be passed.
+4. For **ALL** `127.0.0.1:5000/get`
 
 The result is a JSON response for the all endpoints
 
